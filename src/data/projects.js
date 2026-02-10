@@ -5,6 +5,8 @@ export const projects = [
     period: "2025.11 - 2026.01",
     team: "4명 (팀장)",
     role: "풀스택 개발 및 인프라 구축",
+    language: "Python",
+    isAI: true,
     description: "Wav2Vec2, BERT, OpenAI GPT를 활용하여 사용자의 음성을 종합 분석하고 맞춤형 피드백을 제공하는 AI 기반 음성 코칭 서비스",
     
     problem: "면접이나 발표 준비 시 객관적인 피드백을 받기 어렵고, 말하기 습관을 스스로 파악하기 힘든 문제",
@@ -64,6 +66,8 @@ export const projects = [
     period: "2025.09 - 2025.11",
     team: "6명 (팀장)",
     role: "Backend 개발",
+    language: "Python",
+    isAI: false,
     description: "사용자가 설문조사와 투표를 생성, 배포, 분석할 수 있는 웹 기반 플랫폼. 실시간 응답 수집 및 통계 시각화 기능 제공",
     
     problem: "설문조사나 투표를 진행하려면 외부 서비스에 의존해야 하고, 커스터마이징이 제한적이며, 응답 데이터 관리가 불편함",
@@ -108,6 +112,8 @@ export const projects = [
     period: "2025.03 - 2025.04",
     team: "3명",
     role: "DB 설계 및 Backend 전체 개발",
+    language: "Java",
+    isAI: false,
     description: "Spring Boot 기반 의류 전문 이커머스 플랫폼. 상품 관리부터 주문, 결제, 리뷰까지 쇼핑몰의 핵심 기능 구현",
     
     problem: "첫 팀 프로젝트로서 실무에 가까운 이커머스 시스템을 설계하고 구현하는 경험 필요",
