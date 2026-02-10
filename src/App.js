@@ -76,17 +76,19 @@ function App() {
                 </ul>
               </div>
               
-              <div className="section">
-                <h4>기술적 도전과 해결</h4>
-                {project.challenges.map((challenge, index) => (
-                  <div key={index} className="challenge">
-                    <h5>{challenge.title}</h5>
-                    <p><strong>문제:</strong> {challenge.problem}</p>
-                    <p><strong>해결:</strong> {challenge.solution}</p>
-                    <p><strong>결과:</strong> {challenge.result}</p>
-                  </div>
-                ))}
-              </div>
+              {project.challenges && project.challenges.length > 0 && (
+                <div className="section">
+                  <h4>기술적 도전과 해결</h4>
+                  {project.challenges.map((challenge, index) => (
+                    <div key={index} className="challenge">
+                      <h5>{challenge.title}</h5>
+                      <p><strong>문제:</strong> {challenge.problem}</p>
+                      <p><strong>해결:</strong> {challenge.solution}</p>
+                      <p><strong>결과:</strong> {challenge.result}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
               
               {project.github && (
                 <div className="github-links">
@@ -98,6 +100,11 @@ function App() {
                   {project.github.backend && (
                     <a href={project.github.backend} target="_blank" rel="noopener noreferrer" className="github-link">
                       GitHub Repository (Backend) →
+                    </a>
+                  )}
+                  {project.github.project && (
+                    <a href={project.github.project} target="_blank" rel="noopener noreferrer" className="github-link">
+                      GitHub Repository →
                     </a>
                   )}
                 </div>
