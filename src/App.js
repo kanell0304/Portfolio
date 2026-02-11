@@ -149,21 +149,31 @@ function App() {
                     </div>
                   )}
                   
-                  {project.github && (
+                  {(project.github || project.presentation || project.demo) && (
                     <div className="github-links">
-                      {project.github.frontend && (
+                      {project.github?.frontend && (
                         <a href={project.github.frontend} target="_blank" rel="noopener noreferrer" className="github-link">
                           GitHub Repository (Frontend) →
                         </a>
                       )}
-                      {project.github.backend && (
+                      {project.github?.backend && (
                         <a href={project.github.backend} target="_blank" rel="noopener noreferrer" className="github-link">
                           GitHub Repository (Backend) →
                         </a>
                       )}
-                      {project.github.project && (
+                      {project.github?.project && (
                         <a href={project.github.project} target="_blank" rel="noopener noreferrer" className="github-link">
                           GitHub Repository →
+                        </a>
+                      )}
+                      {project.presentation && (
+                        <a href={project.presentation} target="_blank" rel="noopener noreferrer" className="github-link presentation-link">
+                          발표 자료 (PDF) →
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="github-link demo-link">
+                          시연 영상 →
                         </a>
                       )}
                     </div>
@@ -176,7 +186,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>© 2025 이경준 | kanell0304@gmail.com</p>
+        <p>© 2026 이경준 | gjlee0957@gmail.com</p>
       </footer>
     </div>
   );

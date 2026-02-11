@@ -58,6 +58,7 @@ export const projects = [
       frontend: "https://github.com/kanell0304/IBMxRedHat4_Final_Project_Frontend",
       backend: "https://github.com/kanell0304/IBMxRedHat4_Final_Project_Backend"
     },
+    presentation: "https://drive.google.com/file/d/1oou9NBjWXW7vlEIVvpALzmDrVn7_zhMJ/view?usp=sharing",
     demo: null
   },
   {

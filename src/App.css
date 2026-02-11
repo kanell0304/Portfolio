@@ -311,6 +311,24 @@ body {
   background: #5568d3;
 }
 
+/* 발표 자료 링크 */
+.presentation-link {
+  background: #f59e0b;
+}
+
+.presentation-link:hover {
+  background: #d97706;
+}
+
+/* 시연 영상 링크 */
+.demo-link {
+  background: #10b981;
+}
+
+.demo-link:hover {
+  background: #059669;
+}
+
 .footer {
   background: #333;
   color: white;
