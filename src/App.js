@@ -1,11 +1,8 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './App.css';
 import { projects } from './data/projects';
 
 function App() {
-  // 각 프로젝트에 대한 ref 생성
-  const projectRefs = useRef([]);
-
   // 언어별로 프로젝트 그룹화
   const groupedProjects = projects.reduce((acc, project) => {
     const language = project.language;
