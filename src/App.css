@@ -38,7 +38,7 @@ body {
 .side-nav-title {
   font-size: 0.9rem;
   font-weight: bold;
-  color: #667eea;
+  color: #2563eb;
   margin-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -89,7 +89,7 @@ body {
 
 .side-nav-item:hover {
   background: #f0f0f0;
-  color: #667eea;
+  color: #2563eb;
   transform: translateX(3px);
 }
 
@@ -111,7 +111,7 @@ body {
 }
 
 .header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #334155;
   color: white;
   padding: 60px 20px;
   text-align: center;
@@ -139,7 +139,7 @@ body {
 .intro h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #667eea;
+  color: #2563eb;
 }
 
 .intro p {
@@ -152,7 +152,7 @@ body {
 .projects h2 {
   font-size: 2rem;
   margin-bottom: 40px;
-  color: #667eea;
+  color: #2563eb;
   text-align: center;
 }
 
@@ -173,13 +173,13 @@ body {
 .language-badge {
   display: inline-block;
   padding: 10px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #2563eb;
   color: white;
   border-radius: 25px;
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 }
 
 .project-card {
@@ -244,10 +244,10 @@ body {
 
 .section h5 {
   font-size: 1.1rem;
-  color: #667eea;
+  color: #2563eb;
   margin-bottom: 10px;
   padding-bottom: 5px;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 2px solid #2563eb;
 }
 
 .section h6 {
@@ -277,7 +277,7 @@ body {
   content: "▹";
   position: absolute;
   left: 0;
-  color: #667eea;
+  color: #2563eb;
   font-weight: bold;
 }
 
@@ -286,51 +286,41 @@ body {
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 15px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #2563eb;
 }
 
-.github-links {
+.resource-links {
   display: flex;
-  gap: 15px;
+  flex-direction: column;
+  gap: 12px;
   margin-top: 20px;
-  flex-wrap: wrap;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
 }
 
-.github-link {
-  display: inline-block;
-  padding: 12px 24px;
-  background: #667eea;
-  color: white;
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #24292e;
   text-decoration: none;
-  border-radius: 5px;
+  font-size: 0.95rem;
   font-weight: 500;
-  transition: background 0.3s;
+  transition: all 0.2s;
+  width: fit-content;
 }
 
-.github-link:hover {
-  background: #5568d3;
+.resource-link:hover {
+  color: #000;
+  transform: translateX(3px);
 }
 
-/* 발표 자료 링크 */
-.presentation-link {
-  background: #f59e0b;
-}
-
-.presentation-link:hover {
-  background: #d97706;
-}
-
-/* 시연 영상 링크 */
-.demo-link {
-  background: #10b981;
-}
-
-.demo-link:hover {
-  background: #059669;
+.resource-link svg {
+  flex-shrink: 0;
 }
 
 .footer {
-  background: #333;
+  background: #334155;
   color: white;
   text-align: center;
   padding: 20px;
@@ -356,9 +346,5 @@ body {
   
   .period {
     margin-top: 5px;
-  }
-  
-  .github-links {
-    flex-direction: column;
   }
 }
