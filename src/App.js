@@ -80,8 +80,8 @@ function App() {
         <section className="intro">
           <h2>About Me</h2>
           <p>
-            풀스택 개발 및 AI/ML 경험을 보유한 백엔드 엔지니어입니다.
-            FastAPI, React, AWS 기반 서비스 개발 및 배포 경험이 있습니다.
+            풀스택 개발 및 AI/ML 경험을 보유한 백엔드 엔지니어입니다.<br />
+            Python(FastAPI), Java(Spring Boot), React 기반 서비스 개발 및 CI/CD, AWS 인프라 구축 경험이 있습니다.
           </p>
         </section>
 
