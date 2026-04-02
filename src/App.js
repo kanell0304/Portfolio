@@ -26,6 +26,13 @@ const PlayIcon = () => (
   </svg>
 );
 
+const AwardIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="12" cy="8" r="7"/>
+    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+  </svg>
+);
+
 function App() {
   // 언어별로 프로젝트 그룹화
   const groupedProjects = projects.reduce((acc, project) => {
@@ -43,6 +50,15 @@ function App() {
     element?.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
+    });
+  };
+
+  // 특정 자격증/상장으로 스크롤
+  const scrollToCert = (certId) => {
+    const element = document.getElementById(certId);
+    element?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
     });
   };
 
@@ -74,6 +90,18 @@ function App() {
             </ul>
           </div>
         ))}
+
+        {/* Certificates 섹션 */}
+        <div className="side-nav-title" style={{ marginTop: '30px' }}>Certificates</div>
+        <div className="side-nav-group">
+          <ul className="side-nav-list">
+            <li>
+              <button onClick={() => scrollToCert('certificates')} className="side-nav-item">
+                수료증 및 상장
+              </button>
+            </li>
+          </ul>
+        </div>
       </nav>
 
       <main className="main">
@@ -208,6 +236,19 @@ function App() {
               ))}
             </div>
           ))}
+        </section>
+
+        {/* Certificates & Awards 섹션 */}
+        <section className="certificates" id="certificates">
+          <h2>Certificates & Awards</h2>
+          <p className="cert-description">
+            IBM x Red Hat AI 풀스택 개발자 최우수 훈련생 선정 및 기관장 추천서,<br />
+            응용 SW 개발자 과정 최우수상 등 수료증 및 상장을 확인하실 수 있습니다.
+          </p>
+          <a href="https://drive.google.com/file/d/1gCB3E0RSg_VlADYZCxBtkRzYoy44hqPF/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="cert-download-btn">
+            <DocumentIcon />
+            <span>수료증 및 상장 다운로드</span>
+          </a>
         </section>
       </main>
 

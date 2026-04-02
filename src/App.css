@@ -149,6 +149,52 @@ body {
   margin: 0 auto;
 }
 
+/* Certificates & Awards 섹션 - 간소화 */
+.certificates {
+  margin-bottom: 60px;
+  text-align: center;
+  scroll-margin-top: 80px;
+}
+
+.certificates h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2563eb;
+}
+
+.cert-description {
+  font-size: 1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  line-height: 1.8;
+}
+
+.cert-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  transition: all 0.2s;
+}
+
+.cert-download-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.cert-download-btn svg {
+  color: white;
+}
+
 .projects h2 {
   font-size: 2rem;
   margin-bottom: 40px;
