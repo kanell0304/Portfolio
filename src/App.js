@@ -208,7 +208,13 @@ function App() {
                       {project.github?.project && (
                         <a href={project.github.project} target="_blank" rel="noopener noreferrer" className="resource-link">
                           <GitHubIcon />
-                          <span>GitHub Repository</span>
+                          <span>{project.github.refactored ? 'GitHub Repository (원본 팀 프로젝트)' : 'GitHub Repository'}</span>
+                        </a>
+                      )}
+                      {project.github?.refactored && (
+                        <a href={project.github.refactored} target="_blank" rel="noopener noreferrer" className="resource-link">
+                          <GitHubIcon />
+                          <span>GitHub Repository (리팩토링 버전)</span>
                         </a>
                       )}
                       {project.presentation && (

@@ -109,19 +109,19 @@ export const projects = [
   },
   {
     id: 3,
-    title: "온라인 의류 쇼핑몰",
-    period: "2025.03 - 2025.04",
+    title: "온라인 의류 쇼핑몰 (리팩토링)",
+    period: "2025.03 - 2025.04 (원본), 2026.04 (리팩토링)",
     team: "3명",
-    role: "DB 설계 및 Backend 전체 개발",
+    role: "DB 설계 및 Backend 전체 개발 + N+1 쿼리 개선",
     language: "Java",
     isAI: false,
-    description: "Spring Boot 기반 의류 전문 이커머스 플랫폼. 상품 관리부터 주문, 결제, 리뷰까지 쇼핑몰의 핵심 기능 구현",
+    description: "Spring Boot 기반 의류 전문 이커머스 플랫폼. 원본 팀 프로젝트를 기반으로 N+1 쿼리 문제를 개선하기 위한 리팩토링 진행",
     
-    problem: "첫 팀 프로젝트로서 실무에 가까운 이커머스 시스템을 설계하고 구현하는 경험 필요",
+    problem: "원본 프로젝트에서 루프 내부에서 개별 DB 조회를 반복하는 N+1 쿼리 문제 발견. 예: 장바구니 삭제 시 삭제 대상 수만큼 SELECT 쿼리 발생, 주문 목록 조회 시 주문 수만큼 주문 상품 조회 쿼리 추가 발생",
     
-    solution: "Spring Boot와 JPA를 활용한 RESTful API 서버 구축. JWT 기반 인증, 계층형 아키텍처(Controller-Service-Repository) 적용, MariaDB 데이터베이스 설계",
+    solution: "IN 절 일괄 조회 및 JOIN FETCH로 불필요한 DB 호출 감소. OrderService, ReviewListService, CartService 등 5가지 비효율 패턴 개선: (1) N+1 쿼리, (2) 이중 조회, (3) 불필요한 엔티티 선조회, (4) 전체 조회 후 루프 탐색, (5) 연관 데이터 분리 조회",
     
-    achievement: "3인 팀 프로젝트에서 DB 설계 및 Backend 전체 담당. Spring Boot 기반 이커머스 시스템 구축 경험",
+    achievement: "주문 목록 20건 조회 시 쿼리 수 21번 → 2번 (90% 감소), 리뷰 이미지 조회 21번 → 1번 (95% 감소), 장바구니 다중 조회 5번 → 1번 (80% 감소). 추가로 Long 객체 비교 버그 및 로직 버그 2건 수정",
     
     tech: [
       "Frontend: React, Vite, Redux Toolkit, React Router, Sass",
@@ -147,13 +147,47 @@ export const projects = [
       "주문/배송 API: 주문서 생성, 주문 내역 조회, 배송 상태 관리",
       "리뷰/평점 API: 리뷰 작성, 조회, 평점 집계 시스템 구현",
       "인증/인가: Spring Security + JWT + Kakao OAuth2 소셜 로그인 구현",
-      "마일리지 API: 마일리지 적립, 사용, 조회 기능"
+      "마일리지 API: 마일리지 적립, 사용, 조회 기능",
+      "[리팩토링] OrderService: 주문 목록 N+1 → IN 절 배치 조회 (21번 → 2번)",
+      "[리팩토링] ReviewListService: 리뷰 이미지 N+1 → EntityGraph (21번 → 1번)",
+      "[리팩토링] CartService: 루프 내 개별 조회 → IN 절 일괄 조회 (5번 → 1번)",
+      "[리팩토링] MemberService: existsByEmail() + findByEmail() 이중 조회 제거",
+      "[리팩토링] MileageService: 불필요한 Member/Order 엔티티 선조회 6개 메서드 제거",
+      "[리팩토링] ReviewListService: checkPurchaseStatus() 전체 조회 + 로직 버그 수정 → EXISTS 쿼리",
+      "[리팩토링] QnAListService: checkWritingStatus() Long 비교 버그 수정 → EXISTS 쿼리",
+      "[리팩토링] ItemService: 연관 데이터 분리 조회 (4번) → EntityGraph 통합 (1번)"
     ],
     
-    challenges: [],
+    challenges: [
+      {
+        title: "N+1 쿼리 문제 — OrderService 주문 목록 조회",
+        problem: "주문 목록을 조회할 때마다 각 주문의 주문상품을 개별로 조회하는 N+1 문제 발생. 페이지 20건 조회 시 총 21번의 쿼리 발생 (Order 1번 + OrderItem 20번)",
+        solution: "IN 절을 활용한 배치 조회로 개선. 먼저 주문 목록의 ID를 모아 한 번에 OrderItem을 조회하고, Map으로 그룹화하여 각 주문에 매핑. OrderItemRepository에 findByOrderIds() 메서드 추가",
+        result: "페이지 20건 조회 시 쿼리 수 21번 → 2번 (90% 감소). 50건 조회 시 51번 → 2번으로 데이터량이 많을수록 개선 효과 증가"
+      },
+      {
+        title: "N+1 쿼리 문제 — ReviewListService 리뷰 이미지 조회",
+        problem: "ReviewListRepository에 @EntityGraph(attributePaths = 'images')가 이미 적용되어 이미지가 함께 로딩됨에도, 서비스 레이어에서 reviewImageRepository.findAllByReviewId()를 루프 안에서 재호출하여 중복 조회 발생",
+        solution: "이미 메모리에 로딩된 review.getImages()를 직접 사용하도록 수정. 불필요한 reviewImageRepository 호출 제거",
+        result: "페이지 20건 조회 시 쿼리 수 21번 → 1번 (95% 감소). 리뷰 목록 조회 성능 크게 개선"
+      },
+      {
+        title: "전체 조회 후 루프 탐색 + 로직 버그 — ReviewListService.checkPurchaseStatus()",
+        problem: "구매 여부 확인을 위해 회원의 주문 전체를 가져와 루프로 탐색. 추가로 listIndex가 항상 0으로 고정되어 각 주문의 첫 번째 상품만 확인하는 로직 버그 발견 (두 번째 이후 상품은 영원히 구매 확인 불가)",
+        solution: "OrderItemRepository에 existsByMemberIdAndItemId() 메서드 추가하여 단일 EXISTS 쿼리로 변경. 로직 버그 해결",
+        result: "전체 조회 + N+1 체인 → EXISTS 쿼리 1번. 버그 수정으로 모든 주문 상품 정상 확인 가능"
+      },
+      {
+        title: "Long 객체 비교 버그 — QnAListService.checkWritingStatus()",
+        problem: "QnA 작성자 확인을 위해 회원의 QnA 전체 목록을 가져온 후 루프로 탐색. 추가로 targetQnAList.getId() == qnaListId로 Long 객체를 == 비교하여, ID가 128 이상이면 항상 false 반환 (작성자임에도 '권한 없음' 오류)",
+        solution: "QnAListRepository에 existsByMemberIdAndQnaListId() 메서드 추가하여 단일 EXISTS 쿼리로 변경. Long 비교 버그 해결",
+        result: "전체 조회 → EXISTS 쿼리 1번. Long 객체 비교 버그 수정으로 모든 ID 범위에서 정상 작동"
+      }
+    ],
     
     github: {
-      project: "https://github.com/kanell0304/shop_project"
+      project: "https://github.com/heungsu89/shop_project",
+      refactored: "https://github.com/kanell0304/spring-boot-shop-refactor"
     },
     demo: null
   }
