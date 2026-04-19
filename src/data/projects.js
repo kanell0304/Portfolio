@@ -151,11 +151,7 @@ export const projects = [
       "[리팩토링] OrderService: 주문 목록 N+1 → IN 절 배치 조회 (21번 → 2번)",
       "[리팩토링] ReviewListService: 리뷰 이미지 N+1 → EntityGraph (21번 → 1번)",
       "[리팩토링] CartService: 루프 내 개별 조회 → IN 절 일괄 조회 (5번 → 1번)",
-      "[리팩토링] MemberService: existsByEmail() + findByEmail() 이중 조회 제거",
-      "[리팩토링] MileageService: 불필요한 Member/Order 엔티티 선조회 6개 메서드 제거",
-      "[리팩토링] ReviewListService: checkPurchaseStatus() 전체 조회 + 로직 버그 수정 → EXISTS 쿼리",
-      "[리팩토링] QnAListService: checkWritingStatus() Long 비교 버그 수정 → EXISTS 쿼리",
-      "[리팩토링] ItemService: 연관 데이터 분리 조회 (4번) → EntityGraph 통합 (1번)"
+      "[리팩토링] MemberService: existsByEmail() + findByEmail() 이중 조회 제거"
     ],
     
     challenges: [
@@ -170,18 +166,6 @@ export const projects = [
         problem: "ReviewListRepository에 @EntityGraph(attributePaths = 'images')가 이미 적용되어 이미지가 함께 로딩됨에도, 서비스 레이어에서 reviewImageRepository.findAllByReviewId()를 루프 안에서 재호출하여 중복 조회 발생",
         solution: "이미 메모리에 로딩된 review.getImages()를 직접 사용하도록 수정. 불필요한 reviewImageRepository 호출 제거",
         result: "페이지 20건 조회 시 쿼리 수 21번 → 1번 (95% 감소). 리뷰 목록 조회 성능 크게 개선"
-      },
-      {
-        title: "전체 조회 후 루프 탐색 + 로직 버그 — ReviewListService.checkPurchaseStatus()",
-        problem: "구매 여부 확인을 위해 회원의 주문 전체를 가져와 루프로 탐색. 추가로 listIndex가 항상 0으로 고정되어 각 주문의 첫 번째 상품만 확인하는 로직 버그 발견 (두 번째 이후 상품은 영원히 구매 확인 불가)",
-        solution: "OrderItemRepository에 existsByMemberIdAndItemId() 메서드 추가하여 단일 EXISTS 쿼리로 변경. 로직 버그 해결",
-        result: "전체 조회 + N+1 체인 → EXISTS 쿼리 1번. 버그 수정으로 모든 주문 상품 정상 확인 가능"
-      },
-      {
-        title: "Long 객체 비교 버그 — QnAListService.checkWritingStatus()",
-        problem: "QnA 작성자 확인을 위해 회원의 QnA 전체 목록을 가져온 후 루프로 탐색. 추가로 targetQnAList.getId() == qnaListId로 Long 객체를 == 비교하여, ID가 128 이상이면 항상 false 반환 (작성자임에도 '권한 없음' 오류)",
-        solution: "QnAListRepository에 existsByMemberIdAndQnaListId() 메서드 추가하여 단일 EXISTS 쿼리로 변경. Long 비교 버그 해결",
-        result: "전체 조회 → EXISTS 쿼리 1번. Long 객체 비교 버그 수정으로 모든 ID 범위에서 정상 작동"
       }
     ],
     
