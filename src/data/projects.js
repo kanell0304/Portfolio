@@ -156,16 +156,16 @@ export const projects = [
 
     challenges: [
       {
-        title: "gpt-5.5 API 파라미터 변경 대응",
-        problem: "gpt-5.5 모델에서 max_tokens → max_completion_tokens 로 파라미터명이 변경되고 temperature 파라미터가 미지원으로 바뀌어 기존 코드에서 API 오류 발생",
-        solution: "max_completion_tokens 로 파라미터 수정, temperature 제거. ChatRequest DTO와 OpenAiService 호출부 일괄 변경",
-        result: "gpt-5.5 모델 정상 연동, 오류 없이 서비스 동작"
+        title: "AI 모델 업그레이드 — gpt-4o-mini → gpt-5.5로 답변 정확도 개선",
+        problem: "초기에 비용 절감을 위해 gpt-4o-mini를 사용했으나, 금융 앱별 세부 UI 가이드(예: 토스 계좌이체 단계별 화면 설명)에서 정보 불일치와 낮은 정확도가 빈번하게 발생. 어르신 대상 서비스 특성상 잘못된 안내는 신뢰도 손상으로 직결됨",
+        solution: "gpt-5.5 모델로 업그레이드. 단, gpt-5.5에서 max_tokens → max_completion_tokens 파라미터명 변경 및 temperature 파라미터 미지원으로 바뀌어 ChatRequest DTO와 OpenAiService 호출부를 일괄 수정",
+        result: "금융 앱 단계별 가이드의 정보 정확도가 눈에 띄게 향상. 특히 최신 앱 UI 기반 안내 품질 개선으로 서비스 신뢰도 확보"
       },
       {
-        title: "카카오 OAuth2 토큰 요청 401 오류",
-        problem: "Spring Security 기본 OAuth2 클라이언트가 PKCE 방식으로 토큰 요청을 보내는데, 카카오가 이를 지원하지 않아 401 오류 발생",
-        solution: "카카오 비즈 앱으로 전환 후 Client Secret을 발급받아 client_secret_post 방식으로 변경. application.properties에 client-authentication-method 명시",
-        result: "카카오 OAuth2 로그인 정상 작동, JWT 발급 및 프론트 리다이렉트 완료"
+        title: "API 비용 방어 — 가이드 캐시 + Rate Limiting + 키워드 필터 3중 구조",
+        problem: "OpenAI API는 호출량에 비례해 비용이 발생하므로, 서비스를 무제한 개방하면 악용·반복 호출로 비용이 폭증할 위험이 있음. 또한 금융 안내 서비스임에도 관계없는 주제(일상 대화, 코딩 질문 등)로 GPT를 호출하는 문제도 존재",
+        solution: "① 가이드 캐시: 앱+업무 키워드 조합이 이미 DB에 있으면 OpenAI 미호출, 30일 TTL로 재사용. ② Bucket4j Rate Limiting: 비로그인 IP당·로그인 계정당 시간 30회/일 100회 제한, 초과 시 GPT 호출 전 즉시 429 반환. ③ 키워드 필터 + 시스템 프롬프트: KeywordDetector로 금융 외 주제·악용 키워드를 GPT 호출 전 차단, 시스템 프롬프트에도 금융 업무 외 응답 거부 지시 명시",
+        result: "동일 앱+업무 조합 반복 질문 시 API 비용 0. 금융 외 요청은 GPT 호출 없이 즉시 거부. 비용 예측 가능한 구조로 Freemium 수익화 설계 기반 마련"
       },
       {
         title: "TTS 볼륨 실시간 변경 불가 문제",
@@ -176,7 +176,7 @@ export const projects = [
     ],
 
     github: {
-      project: "https://github.com/kanell0304/project-with-claude-java"
+      project: "https://github.com/kanell0304/Project-with-Claude-java-migration"
     },
     demo: null
   },

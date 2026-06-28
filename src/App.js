@@ -179,7 +179,7 @@ function App() {
                   
                   {project.challenges && project.challenges.length > 0 && (
                     <div className="section">
-                      <h5>기술적 도전과 해결</h5>
+                      <h5>문제 인식과 해결</h5>
                       {project.challenges.map((challenge, idx) => (
                         <div key={idx} className="challenge">
                           <h6>{challenge.title}</h6>
