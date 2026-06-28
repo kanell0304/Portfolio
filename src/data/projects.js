@@ -108,6 +108,79 @@ export const projects = [
     demo: null
   },
   {
+    id: 4,
+    title: "디지털 도우미 - AI 인터넷 뱅킹 안내 서비스",
+    period: "2026.06",
+    team: "개인 프로젝트",
+    role: "풀스택 개발 및 인프라 설계",
+    language: "Java",
+    isAI: true,
+    description: "고령화 사회에서 디지털 기기 사용이 어려운 어르신을 위한 AI 기반 인터넷 뱅킹 안내 서비스. PWA로 스마트폰 홈화면 설치가 가능하며, 자연어로 질문하면 단계별 가이드를 음성(TTS)으로 안내",
+
+    problem: "고령층은 은행 앱마다 UI가 달라 동일한 업무도 앱별로 다시 배워야 하고, 기존 고객센터·챗봇은 어르신 친화적이지 않아 디지털 금융 서비스 접근성이 낮음",
+
+    solution: "OpenAI GPT + Whisper를 활용한 텍스트/음성 입력을 지원하고, 앱+업무 키워드 기반 가이드 캐시 시스템으로 동일 질문 반복 시 API 비용 없이 즉시 응답. Web Speech API TTS로 AI 답변을 자동 읽어줌",
+
+    achievement: "가이드 캐시 시스템으로 반복 질문 시 OpenAI API 호출 0회 달성. Bucket4j Rate Limiting으로 API 비용 방어 구조 설계. Python FastAPI → Java Spring Boot 전면 마이그레이션",
+
+    tech: [
+      "Frontend: Vite + React 19, JavaScript, Tailwind CSS 4, Web Speech API (TTS), PWA",
+      "Backend: Java 21, Spring Boot 3.3.5, Gradle, Spring Data JPA",
+      "Database: PostgreSQL (가이드 캐시, 업체/업무 목록, 유저)",
+      "AI: OpenAI API (gpt-5.5, Whisper STT, web_search_preview)",
+      "인증: Spring Security + Kakao OAuth2 + JWT (jjwt 0.12.6, 30일 만료)",
+      "Rate Limiting: Bucket4j (IP/계정 기반, 시간당 30회·일 100회)",
+      "Infrastructure: AWS EC2 + Docker + Nginx, S3 + CloudFront, Route53, GitHub Actions CI/CD"
+    ],
+
+    features: [
+      "AI 텍스트 채팅: 자연어로 금융 업무 질문 → 단계별 안내 (금융 외 주제 자동 거절)",
+      "음성 입력(STT): Whisper API 기반 마이크 음성 → 텍스트 변환 후 AI 답변 생성",
+      "음성 출력(TTS): Web Speech API로 AI 답변 자동 낭독, 볼륨 슬라이더 조절",
+      "가이드 캐시: 앱+업무 키워드 감지 → DB 캐시 우선 반환 (30일 TTL), 미캐시 시 web_search_preview 검색 후 저장",
+      "업체 선택 UI: 앱 미특정 시 금융기관 버튼 목록 자동 표시, 직접 입력 가능",
+      "카카오 소셜 로그인: OAuth2 + JWT, 비로그인도 이용 가능",
+      "Rate Limiting: 비로그인 IP 기반 / 로그인 계정 기반 요청 수 제한, 초과 시 429 반환",
+      "PWA: 스마트폰 홈화면 설치 가능"
+    ],
+
+    myContributions: [
+      "백엔드 전체 설계 및 구현: Chat/Voice/Vendor/Task API, OpenAiService, GuideService, KeywordDetector",
+      "가이드 캐시 시스템: 대화 이력 전체에서 앱+업무 키워드 감지 → DB 캐시 → OpenAI web_search_preview 검색 저장",
+      "인증 시스템: Spring Security + Kakao OAuth2 + JWT 발급/검증, OAuth2SuccessHandler 구현",
+      "Rate Limiting: Bucket4j IP/계정 기반 이중 구조 설계, RateLimitFilter 구현",
+      "프론트엔드 전체: React 컴포넌트, useAuth/useChat/useVoice/useTTS 커스텀 훅, TTS 볼륨 UX",
+      "기술 마이그레이션: Python FastAPI → Java Spring Boot, Maven → Gradle, SQLite → PostgreSQL",
+      "CI/CD 파이프라인 설계: GitHub Actions 기반 백엔드(EC2 Docker), 프론트(S3/CloudFront) 자동 배포"
+    ],
+
+    challenges: [
+      {
+        title: "gpt-5.5 API 파라미터 변경 대응",
+        problem: "gpt-5.5 모델에서 max_tokens → max_completion_tokens 로 파라미터명이 변경되고 temperature 파라미터가 미지원으로 바뀌어 기존 코드에서 API 오류 발생",
+        solution: "max_completion_tokens 로 파라미터 수정, temperature 제거. ChatRequest DTO와 OpenAiService 호출부 일괄 변경",
+        result: "gpt-5.5 모델 정상 연동, 오류 없이 서비스 동작"
+      },
+      {
+        title: "카카오 OAuth2 토큰 요청 401 오류",
+        problem: "Spring Security 기본 OAuth2 클라이언트가 PKCE 방식으로 토큰 요청을 보내는데, 카카오가 이를 지원하지 않아 401 오류 발생",
+        solution: "카카오 비즈 앱으로 전환 후 Client Secret을 발급받아 client_secret_post 방식으로 변경. application.properties에 client-authentication-method 명시",
+        result: "카카오 OAuth2 로그인 정상 작동, JWT 발급 및 프론트 리다이렉트 완료"
+      },
+      {
+        title: "TTS 볼륨 실시간 변경 불가 문제",
+        problem: "SpeechSynthesisUtterance 객체는 생성 시점에 볼륨이 고정되어 재생 중 슬라이더를 조절해도 현재 재생 중인 발화에 즉시 반영되지 않음",
+        solution: "재생 중 볼륨 변경 시 마우스 근처에 '다음 텍스트부터 적용됩니다' 툴팁을 표시하는 UX로 사용자 혼란 방지",
+        result: "사용자가 볼륨 변경 시점을 명확히 인지, UX 불만 없이 서비스 이용 가능"
+      }
+    ],
+
+    github: {
+      project: "https://github.com/kanell0304/project-with-claude-java"
+    },
+    demo: null
+  },
+  {
     id: 3,
     title: "온라인 의류 쇼핑몰 (리팩토링)",
     period: "2025.03 - 2025.04 (원본), 2026.04 (리팩토링)",
