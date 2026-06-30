@@ -241,8 +241,8 @@ function App() {
         <section className="certificates" id="certificates">
           <h2>Certificates & Awards</h2>
           <p className="cert-description">
-            IBM x Red Hat AI 풀스택 개발자 최우수 훈련생 선정 및 기관장 추천서,<br />
-            응용 SW 개발자 과정 최우수상 등 수료증 및 상장을 확인하실 수 있습니다.
+            IBM x Red Hat AI 풀스택 개발자 프로젝트 우수상, 우수훈련생 선정 ,<br />
+            응용 SW 개발자 과정 최우수상 및 기관장 추천서 등 수료증 및 상장을 확인하실 수 있습니다.
           </p>
           <a href="https://drive.google.com/file/d/1gCB3E0RSg_VlADYZCxBtkRzYoy44hqPF/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="cert-download-btn">
             <DocumentIcon />
