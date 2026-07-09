@@ -59,19 +59,23 @@ export const projects = [
       backend: "https://github.com/kanell0304/IBMxRedHat4_Final_Project_Backend"
     },
     presentation: "https://drive.google.com/file/d/1oou9NBjWXW7vlEIVvpALzmDrVn7_zhMJ/view?usp=sharing",
-    demo: "https://youtu.be/8bABU-KcEJE"
+    demo: "https://youtu.be/8bABU-KcEJE",
+    screenshots: [
+      { src: "screenshots/steach-1.jpg", caption: "홈 화면 - 모의 면접/대화 분석/발표 분석/미니게임" },
+      { src: "screenshots/steach-2.jpg", caption: "발표 분석 결과 - 음량/피치/속도/침묵/명료도 세부 점수" }
+    ]
   },
   {
     id: 2,
-    title: "온라인 설문조사/투표 플랫폼",
+    title: "FORMZ - 온라인 설문 플랫폼",
     period: "2025.09 - 2025.11",
     team: "6명 (팀장)",
     role: "Backend 개발",
     language: "Python",
     isAI: false,
-    description: "사용자가 설문조사와 투표를 생성, 배포, 분석할 수 있는 웹 기반 플랫폼. 실시간 응답 수집 및 통계 시각화 기능 제공",
-    
-    problem: "설문조사나 투표를 진행하려면 외부 서비스에 의존해야 하고, 커스터마이징이 제한적이며, 응답 데이터 관리가 불편함",
+    description: "사용자가 설문조사를 생성, 배포, 분석할 수 있는 웹 기반 플랫폼. 실시간 응답 수집 및 통계 시각화 기능 제공",
+
+    problem: "설문조사를 진행하려면 외부 서비스에 의존해야 하고, 커스터마이징이 제한적이며, 응답 데이터 관리가 불편함",
     
     solution: "직관적인 UI로 설문을 쉽게 생성하고, 실시간으로 응답을 수집하며, 통계를 시각화할 수 있는 자체 플랫폼 개발. JWT 기반 인증으로 사용자별 설문 관리 가능",
     
@@ -105,11 +109,15 @@ export const projects = [
     github: {
       project: "https://github.com/kanell0304/online_voting-survey_platform_pj"
     },
-    demo: null
+    demo: null,
+    screenshots: [
+      { src: "screenshots/formz-1.jpg", caption: "설문 생성 화면 - 질문 유형/필수 여부 설정" },
+      { src: "screenshots/formz-2.jpg", caption: "설문 응답 화면" }
+    ]
   },
   {
     id: 4,
-    title: "디지털 도우미 - AI 인터넷 뱅킹 안내 서비스",
+    title: "BankAssistent - AI 인터넷 뱅킹 안내 서비스",
     period: "2026.06",
     team: "개인 프로젝트",
     role: "풀스택 개발 및 인프라 설계",
@@ -178,11 +186,16 @@ export const projects = [
     github: {
       project: "https://github.com/kanell0304/Project-with-Claude-java-migration"
     },
-    demo: null
+    demo: null,
+    screenshots: [
+      { src: "screenshots/bank-assistant-1.jpg", caption: "온보딩 - 음성 안내 사용 여부 선택" },
+      { src: "screenshots/bank-assistant-2.jpg", caption: "업무 선택 홈 화면" },
+      { src: "screenshots/bank-assistant-3.jpg", caption: "AI 채팅 - 은행 앱 선택 및 단계별 안내" }
+    ]
   },
   {
     id: 3,
-    title: "온라인 의류 쇼핑몰 (리팩토링)",
+    title: "NORD - 온라인 의류 쇼핑몰 (리팩토링)",
     period: "2025.03 - 2025.04 (원본), 2026.04 (리팩토링)",
     team: "3명",
     role: "DB 설계 및 Backend 전체 개발 + N+1 쿼리 개선",
@@ -246,6 +259,10 @@ export const projects = [
       project: "https://github.com/heungsu89/shop_project",
       refactored: "https://github.com/kanell0304/spring-boot-shop-refactor"
     },
-    demo: null
+    demo: null,
+    screenshots: [
+      { src: "screenshots/shop-1.jpg", caption: "메인 화면 - 브랜드 히어로 배너" },
+      { src: "screenshots/shop-2.jpg", caption: "상품 상세 화면" }
+    ]
   }
 ];

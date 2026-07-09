@@ -111,20 +111,87 @@ body {
 }
 
 .header {
+  position: relative;
   background: #334155;
   color: white;
-  padding: 60px 20px;
+  padding: 90px 20px;
   text-align: center;
+  overflow: hidden;
+}
+
+.header-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: top center;
+  filter: blur(3px) saturate(1.2);
+  transform: scale(1.15);
+  opacity: 0;
+  animation-name: header-bg-crossfade;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes header-bg-crossfade {
+  0%    { opacity: 0; }
+  2%    { opacity: 1; }
+  30%   { opacity: 1; }
+  35%   { opacity: 0; }
+  100%  { opacity: 0; }
+}
+
+.header-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(51, 65, 85, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-bg-layer {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header-text {
+  text-align: left;
+}
+
+.avatar {
+  width: 190px;
+  height: 190px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
 }
 
 .header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  font-size: 3rem;
+  margin-bottom: 12px;
 }
 
-.header p {
-  font-size: 1.2rem;
+.header-role {
+  font-size: 1.35rem;
   opacity: 0.9;
+}
+
+.header-tagline {
+  font-size: 1.1rem;
+  opacity: 0.7;
+  margin-top: 10px;
 }
 
 .main {
@@ -146,7 +213,230 @@ body {
   font-size: 1.1rem;
   color: #666;
   max-width: 800px;
+  margin: 0 auto 16px;
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 800px;
+  margin: 40px auto 0;
+  text-align: left;
+}
+
+@media (max-width: 640px) {
+  .principles {
+    grid-template-columns: 1fr;
+  }
+}
+
+.principle-card {
+  background: #f9fafb;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.principle-index {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+
+.principle-card h4 {
+  font-size: 1.05rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.principle-card p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  max-width: none;
+}
+
+/* Tech Stack 섹션 */
+.tech-stack {
+  margin-bottom: 60px;
+  scroll-margin-top: 80px;
+}
+
+.tech-stack h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #2563eb;
+  text-align: center;
+}
+
+.tech-stack-groups {
+  max-width: 900px;
   margin: 0 auto;
+}
+
+.tech-stack-group {
+  display: flex;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.tech-stack-category {
+  width: 110px;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tech-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+}
+
+.tech-chip {
+  padding: 5px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #334155;
+  background: white;
+}
+
+/* 프로젝트 스크린샷 갤러리 */
+.screenshot-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.screenshot-item {
+  margin: 0;
+}
+
+.screenshot-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.screenshot-item figcaption {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* 학력 및 교육 타임라인 */
+.education {
+  margin-bottom: 60px;
+  scroll-margin-top: 80px;
+}
+
+.education h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #2563eb;
+  text-align: center;
+}
+
+.subsection-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 30px 0 16px;
+}
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.timeline-period {
+  width: 140px;
+  flex-shrink: 0;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.timeline-content strong {
+  color: #333;
+  font-size: 1rem;
+}
+
+.timeline-content span {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.timeline-detail {
+  color: #888;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* 수상 및 자격증 */
+.awards-certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  text-align: left;
+}
+
+.award-list {
+  list-style: none;
+  padding: 0;
+}
+
+.award-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.award-period {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.award-item strong {
+  color: #333;
+  font-size: 1rem;
+}
+
+.award-org {
+  color: #666;
+  font-size: 0.9rem;
 }
 
 /* Certificates & Awards 섹션 - 간소화 */
@@ -160,14 +450,6 @@ body {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #2563eb;
-}
-
-.cert-description {
-  font-size: 1rem;
-  color: #666;
-  max-width: 700px;
-  margin: 0 auto 30px;
-  line-height: 1.8;
 }
 
 .cert-download-btn {
@@ -369,8 +651,32 @@ body {
   background: #334155;
   color: white;
   text-align: center;
-  padding: 20px;
+  padding: 30px 20px;
   margin-top: 40px;
+  scroll-margin-top: 80px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  opacity: 0.85;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.footer-link:hover {
+  opacity: 1;
 }
 
 /* 반응형: 화면이 좁을 때 사이드 네비게이션 숨김 */
@@ -381,10 +687,24 @@ body {
 }
 
 @media (max-width: 768px) {
-  .header h1 {
-    font-size: 2rem;
+  .header-content {
+    flex-direction: column;
+    gap: 20px;
   }
-  
+
+  .header-text {
+    text-align: center;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+  }
+
+  .header h1 {
+    font-size: 2.2rem;
+  }
+
   .project-header {
     flex-direction: column;
     align-items: flex-start;
