@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { projects } from './data/projects';
 import { profile, techStack, education, training, awards, certifications } from './data/profile';
@@ -39,6 +39,8 @@ const codeBackgrounds = ['code-bg/vscode.png', 'code-bg/intellij.png', 'code-bg/
 const CODE_BG_CYCLE_SECONDS = 24;
 
 function App() {
+  const [lightboxImage, setLightboxImage] = useState(null);
+
   // 언어별로 프로젝트 그룹화
   const groupedProjects = projects.reduce((acc, project) => {
     const language = project.language;
@@ -204,6 +206,24 @@ function App() {
                           <figcaption>{shot.caption}</figcaption>
                         </figure>
                       ))}
+                    </div>
+                  )}
+
+                  {project.architecture && (
+                    <div className="section architecture-section">
+                      <h5>백엔드 아키텍처</h5>
+                      <button
+                        type="button"
+                        className="architecture-preview"
+                        onClick={() => setLightboxImage(project.architecture)}
+                      >
+                        <img
+                          src={`${import.meta.env.BASE_URL}${project.architecture.src}`}
+                          alt={project.architecture.alt}
+                          loading="lazy"
+                        />
+                        <span className="architecture-zoom-hint">클릭해서 크게 보기</span>
+                      </button>
                     </div>
                   )}
 
@@ -393,6 +413,18 @@ function App() {
           </a>
         </div>
       </footer>
+
+      {lightboxImage && (
+        <div className="lightbox-overlay" onClick={() => setLightboxImage(null)}>
+          <button type="button" className="lightbox-close" onClick={() => setLightboxImage(null)}>×</button>
+          <img
+            src={`${import.meta.env.BASE_URL}${lightboxImage.src}`}
+            alt={lightboxImage.alt}
+            className="lightbox-image"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }
