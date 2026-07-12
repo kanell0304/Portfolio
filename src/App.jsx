@@ -227,6 +227,24 @@ function App() {
                     </div>
                   )}
 
+                  {project.deploymentArchitecture && (
+                    <div className="section architecture-section">
+                      <h5>CI/CD 배포 아키텍처</h5>
+                      <button
+                        type="button"
+                        className="architecture-preview"
+                        onClick={() => setLightboxImage(project.deploymentArchitecture)}
+                      >
+                        <img
+                          src={`${import.meta.env.BASE_URL}${project.deploymentArchitecture.src}`}
+                          alt={project.deploymentArchitecture.alt}
+                          loading="lazy"
+                        />
+                        <span className="architecture-zoom-hint">클릭해서 크게 보기</span>
+                      </button>
+                    </div>
+                  )}
+
                   <div className="section">
                     <h5>문제</h5>
                     <p>{project.problem}</p>

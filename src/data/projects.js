@@ -64,7 +64,8 @@ export const projects = [
       { src: "screenshots/steach-1.jpg", caption: "홈 화면 - 모의 면접/대화 분석/발표 분석/미니게임" },
       { src: "screenshots/steach-2.jpg", caption: "발표 분석 결과 - 음량/피치/속도/침묵/명료도 세부 점수" }
     ],
-    architecture: { src: "architecture/steach.svg", alt: "STEACH — Python + FastAPI Backend Architecture" }
+    architecture: { src: "architecture/steach.svg", alt: "STEACH — Python + FastAPI Backend Architecture" },
+    deploymentArchitecture: { src: "architecture/steach-deployment.png", alt: "STEACH — CI/CD 배포 아키텍처 (Frontend + Backend 전체)" }
   },
   {
     id: 2,
