@@ -1,0 +1,199 @@
+<svg viewBox="0 0 1450 800" width="1450" height="800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BankAssistent 백엔드 아키텍처: Client, API Gateway, Spring Boot Application(Presentation/Service/Domain/Persistence), External Resources 4단 구조">
+<title>BankAssistent — Java + Spring Boot Backend Architecture</title>
+<defs>
+  <marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#1c3a52"/>
+  </marker>
+</defs>
+
+<rect width="1450" height="800" fill="#eef3f9"/>
+<rect x="0" y="0" width="1450" height="50" fill="#1c3a52"/>
+<text x="725" y="32" text-anchor="middle" font-family="-apple-system,'Segoe UI',sans-serif" font-size="19" font-weight="700" letter-spacing="0.5" fill="#ffffff">BANKASSISTENT — JAVA 21 + SPRING BOOT BACKEND ARCHITECTURE</text>
+
+<!-- ===================== CLIENT LAYER ===================== -->
+<rect x="16" y="64" width="150" height="636" rx="6" fill="#eef0fb" stroke="#1c3a52" stroke-width="1.5"/>
+<rect x="16" y="64" width="150" height="30" rx="6" fill="#d7ddf5"/>
+<rect x="16" y="86" width="150" height="8" fill="#d7ddf5"/>
+<text x="91" y="84" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" fill="#1c3a52">CLIENT LAYER</text>
+
+<g transform="translate(67,140)">
+  <rect width="48" height="48" rx="9" fill="#64748b"/>
+  <rect x="9" y="10" width="30" height="21" rx="2" fill="none" stroke="#ffffff" stroke-width="2.4"/>
+  <line x1="24" y1="31" x2="24" y2="37" stroke="#ffffff" stroke-width="2.4"/>
+  <line x1="18" y1="37" x2="30" y2="37" stroke="#ffffff" stroke-width="2.4"/>
+</g>
+<text x="91" y="212" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10.5" font-weight="700" fill="#1c3a52">WEB / MOBILE</text>
+<text x="91" y="226" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9.5" fill="#55677a">채팅 UI</text>
+
+<g transform="translate(67,290)">
+  <rect width="48" height="48" rx="9" fill="#64748b"/>
+  <rect x="18" y="10" width="12" height="20" rx="6" fill="none" stroke="#ffffff" stroke-width="2.2"/>
+  <path d="M13,26 A11,11 0 0 0 35,26" fill="none" stroke="#ffffff" stroke-width="2.2"/>
+  <line x1="24" y1="37" x2="24" y2="41" stroke="#ffffff" stroke-width="2.2"/>
+</g>
+<text x="91" y="362" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10.5" font-weight="700" fill="#1c3a52">음성 입력</text>
+<text x="91" y="376" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9.5" fill="#55677a">(Whisper STT)</text>
+
+<!-- ===================== API GATEWAY ===================== -->
+<rect x="184" y="64" width="150" height="636" rx="6" fill="#eef0fb" stroke="#1c3a52" stroke-width="1.5"/>
+<rect x="184" y="64" width="150" height="30" rx="6" fill="#d7ddf5"/>
+<rect x="184" y="86" width="150" height="8" fill="#d7ddf5"/>
+<text x="259" y="79" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10.5" font-weight="700" fill="#1c3a52">API GATEWAY /</text>
+<text x="259" y="91" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10.5" font-weight="700" fill="#1c3a52">ENTRY POINT</text>
+
+<g transform="translate(219,150)">
+  <rect width="80" height="80" rx="14" fill="#3e9b52"/>
+  <g fill="none" stroke="#ffffff" stroke-width="3">
+    <circle cx="40" cy="40" r="14"/>
+    <circle cx="40" cy="40" r="4" fill="#ffffff"/>
+  </g>
+  <g fill="#ffffff" stroke="none">
+    <rect x="37" y="6" width="6" height="9"/><rect x="37" y="65" width="6" height="9"/>
+    <rect x="6" y="37" width="9" height="6"/><rect x="65" y="37" width="9" height="6"/>
+    <rect x="12" y="12" width="8" height="6" transform="rotate(45 16 15)"/>
+    <rect x="60" y="12" width="8" height="6" transform="rotate(-45 64 15)"/>
+    <rect x="12" y="62" width="8" height="6" transform="rotate(-45 16 65)"/>
+    <rect x="60" y="62" width="8" height="6" transform="rotate(45 64 65)"/>
+  </g>
+</g>
+<text x="259" y="252" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" fill="#1c3a52">Security Filter</text>
+<text x="259" y="266" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" fill="#1c3a52">Chain</text>
+<text x="259" y="288" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9.5" fill="#55677a">RateLimitFilter</text>
+<text x="259" y="301" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9.5" fill="#55677a">(Bucket4j)</text>
+<text x="259" y="317" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9.5" fill="#55677a">→ JwtAuthFilter</text>
+<text x="259" y="340" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9" fill="#55677a">REQUEST RATE LIMITING,</text>
+<text x="259" y="352" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9" fill="#55677a">JWT AUTHENTICATION</text>
+
+<!-- arrows client->gateway->app -->
+<line x1="166" y1="382" x2="184" y2="382" stroke="#1c3a52" stroke-width="1.8" marker-end="url(#m1)"/>
+<line x1="334" y1="382" x2="352" y2="382" stroke="#1c3a52" stroke-width="1.8" marker-end="url(#m1)"/>
+
+<!-- ===================== SPRING BOOT APPLICATION ===================== -->
+<rect x="352" y="64" width="680" height="636" rx="6" fill="#dbe9f5" stroke="#1c3a52" stroke-width="1.5"/>
+<text x="692" y="84" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="700" fill="#1c3a52">SPRING BOOT APPLICATION (MONOLITHIC)</text>
+
+<!-- Layer 1: Presentation -->
+<rect x="368" y="100" width="648" height="130" rx="6" fill="#eaf3fb" stroke="#7fb2dd" stroke-width="1.3"/>
+<text x="382" y="118" font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" fill="#1c3a52">1. PRESENTATION LAYER (WEB)</text>
+<g font-family="-apple-system,sans-serif">
+  <rect x="382" y="128" width="209" height="54" rx="6" fill="#cfe4f5" stroke="#5b9bd5" stroke-width="1.2"/>
+  <circle cx="398" cy="146" r="7" fill="#3e9b52"/>
+  <text x="411" y="150" font-size="11" font-weight="700" fill="#173a5c">CONTROLLERS</text>
+  <text x="398" y="168" font-size="9" fill="#4a6178">@RestController — 5개 컨트롤러</text>
+
+  <rect x="601" y="128" width="209" height="54" rx="6" fill="#cfe4f5" stroke="#5b9bd5" stroke-width="1.2"/>
+  <circle cx="617" cy="146" r="7" fill="#5b9bd5"/>
+  <text x="630" y="150" font-size="11" font-weight="700" fill="#173a5c">DTOs</text>
+  <text x="617" y="168" font-size="9" fill="#4a6178">ChatRequest/Response 등 (Java Record)</text>
+
+  <rect x="820" y="128" width="196" height="54" rx="6" fill="#cfe4f5" stroke="#5b9bd5" stroke-width="1.2"/>
+  <circle cx="836" cy="146" r="7" fill="#5b9bd5"/>
+  <text x="849" y="150" font-size="11" font-weight="700" fill="#173a5c">VALIDATION</text>
+  <text x="836" y="168" font-size="9" fill="#4a6178">요청 파라미터 검증</text>
+</g>
+<text x="692" y="204" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9.5" fill="#3a5875">HTTP 요청 처리, JSON 직렬화 · REST /api/v1</text>
+
+<line x1="692" y1="230" x2="692" y2="252" stroke="#1c3a52" stroke-width="1.8" marker-end="url(#m1)"/>
+
+<!-- Layer 2: Service -->
+<rect x="368" y="252" width="648" height="130" rx="6" fill="#fdf1e6" stroke="#e5a559" stroke-width="1.3"/>
+<text x="382" y="270" font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" fill="#1c3a52">2. SERVICE LAYER (BUSINESS LOGIC)</text>
+<g font-family="-apple-system,sans-serif">
+  <rect x="382" y="280" width="150" height="54" rx="6" fill="#fbe0bf" stroke="#e5a559" stroke-width="1.2"/>
+  <circle cx="398" cy="298" r="7" fill="#3e9b52"/>
+  <text x="411" y="302" font-size="10.5" font-weight="700" fill="#7a4a12">SERVICE BEANS</text>
+  <text x="398" y="320" font-size="9" fill="#7a5a30">JwtService</text>
+
+  <rect x="542" y="280" width="150" height="54" rx="6" fill="#fbe0bf" stroke="#e5a559" stroke-width="1.2"/>
+  <circle cx="558" cy="298" r="7" fill="#e5a559"/>
+  <text x="571" y="302" font-size="10.5" font-weight="700" fill="#7a4a12">GUIDE CACHE</text>
+  <text x="558" y="320" font-size="9" fill="#7a5a30">30일 TTL, 웹검색 폴백</text>
+
+  <rect x="702" y="280" width="150" height="54" rx="6" fill="#fbe0bf" stroke="#e5a559" stroke-width="1.2"/>
+  <circle cx="718" cy="298" r="7" fill="#e5a559"/>
+  <text x="731" y="302" font-size="10.5" font-weight="700" fill="#7a4a12">KEYWORD DET.</text>
+  <text x="718" y="320" font-size="9" fill="#7a5a30">한국어 앱/작업 인식</text>
+
+  <rect x="862" y="280" width="154" height="54" rx="6" fill="#fbe0bf" stroke="#e5a559" stroke-width="1.2"/>
+  <circle cx="878" cy="298" r="7" fill="#e5a559"/>
+  <text x="891" y="302" font-size="10" font-weight="700" fill="#7a4a12">AI INTEGRATION</text>
+  <text x="878" y="320" font-size="9" fill="#7a5a30">OpenAI GPT/Whisper</text>
+</g>
+<text x="692" y="356" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9.5" fill="#7a5a30">비즈니스 로직 실행, AI 응답 생성, 캐시 우선 조회</text>
+
+<line x1="692" y1="382" x2="692" y2="404" stroke="#1c3a52" stroke-width="1.8" marker-end="url(#m1)"/>
+
+<!-- Layer 3: Domain -->
+<rect x="368" y="404" width="648" height="130" rx="6" fill="#eaf7ee" stroke="#6cbf83" stroke-width="1.3"/>
+<text x="382" y="422" font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" fill="#1c3a52">3. DOMAIN LAYER (MODEL)</text>
+<g font-family="-apple-system,sans-serif">
+  <rect x="382" y="432" width="209" height="54" rx="6" fill="#d3ecda" stroke="#6cbf83" stroke-width="1.2"/>
+  <circle cx="398" cy="450" r="7" fill="#3e9b52"/>
+  <text x="411" y="454" font-size="11" font-weight="700" fill="#215c33">GUIDE</text>
+  <text x="398" y="472" font-size="9" fill="#3a7a4d">앱 사용법 가이드 엔티티</text>
+
+  <rect x="601" y="432" width="209" height="54" rx="6" fill="#d3ecda" stroke="#6cbf83" stroke-width="1.2"/>
+  <circle cx="617" cy="450" r="7" fill="#6cbf83"/>
+  <text x="630" y="454" font-size="11" font-weight="700" fill="#215c33">TASK / VENDOR</text>
+  <text x="617" y="472" font-size="9" fill="#3a7a4d">작업·업체 엔티티</text>
+
+  <rect x="820" y="432" width="196" height="54" rx="6" fill="#d3ecda" stroke="#6cbf83" stroke-width="1.2"/>
+  <circle cx="836" cy="450" r="7" fill="#6cbf83"/>
+  <text x="849" y="454" font-size="11" font-weight="700" fill="#215c33">USER</text>
+  <text x="836" y="472" font-size="9" fill="#3a7a4d">Kakao 연동 사용자</text>
+</g>
+<text x="692" y="508" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9.5" fill="#3a7a4d">JPA @Entity — 핵심 도메인 객체, 프레임워크 독립적</text>
+
+<line x1="692" y1="534" x2="692" y2="556" stroke="#1c3a52" stroke-width="1.8" marker-end="url(#m1)" marker-start="url(#m1)"/>
+
+<!-- Layer 4: Persistence -->
+<rect x="368" y="556" width="648" height="130" rx="6" fill="#e8f5f3" stroke="#4fa89a" stroke-width="1.3"/>
+<text x="382" y="574" font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" fill="#1c3a52">4. PERSISTENCE LAYER (DATA ACCESS)</text>
+<g font-family="-apple-system,sans-serif">
+  <rect x="382" y="584" width="313" height="54" rx="6" fill="#cdece7" stroke="#4fa89a" stroke-width="1.2"/>
+  <circle cx="398" cy="602" r="7" fill="#3e9b52"/>
+  <text x="411" y="606" font-size="11" font-weight="700" fill="#164f45">REPOSITORIES</text>
+  <text x="398" y="624" font-size="9" fill="#2e6f61">@Repository — Guide/Task/User/Vendor (Spring Data JPA)</text>
+
+  <rect x="705" y="584" width="311" height="54" rx="6" fill="#cdece7" stroke="#4fa89a" stroke-width="1.2"/>
+  <circle cx="721" cy="602" r="7" fill="#4fa89a"/>
+  <text x="734" y="606" font-size="11" font-weight="700" fill="#164f45">HIBERNATE ORM</text>
+  <text x="721" y="624" font-size="9" fill="#2e6f61">ddl-auto=update</text>
+</g>
+<text x="692" y="660" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9.5" fill="#2e6f61">DB 접근, CRUD 연산</text>
+
+<!-- arrow app -> external -->
+<line x1="1032" y1="382" x2="1082" y2="382" stroke="#1c3a52" stroke-width="1.8" marker-end="url(#m1)"/>
+<line x1="1032" y1="621" x2="1082" y2="621" stroke="#1c3a52" stroke-width="1.8" marker-end="url(#m1)" marker-start="url(#m1)"/>
+
+<!-- ===================== EXTERNAL RESOURCES ===================== -->
+<rect x="1082" y="64" width="352" height="636" rx="6" fill="#ffffff" stroke="#1c3a52" stroke-width="1.5"/>
+<rect x="1082" y="64" width="352" height="30" rx="6" fill="#e4ecf5"/>
+<rect x="1082" y="86" width="352" height="8" fill="#e4ecf5"/>
+<text x="1258" y="84" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" fill="#1c3a52">EXTERNAL RESOURCES</text>
+
+<g font-family="-apple-system,sans-serif">
+  <rect x="1100" y="292" width="316" height="50" rx="8" fill="#fbf3df" stroke="#92650f" stroke-width="1.4"/>
+  <g transform="translate(1112,304)"><rect width="26" height="26" rx="6" fill="#92650f"/><path d="M17,6 L9,17 L14,17 L11,26 L21,13 L16,13 Z" fill="#ffffff"/></g>
+  <text x="1148" y="313" font-size="11" font-weight="700" fill="#1c3a52">OPENAI API</text>
+  <text x="1148" y="329" font-size="9" fill="#55677a">GPT-5.5 · Whisper STT</text>
+
+  <rect x="1100" y="356" width="316" height="50" rx="8" fill="#fbf3df" stroke="#92650f" stroke-width="1.4"/>
+  <g transform="translate(1112,368)"><rect width="26" height="26" rx="6" fill="#92650f"/><circle cx="13" cy="13" r="7" fill="none" stroke="#fff" stroke-width="2"/><text x="13" y="17" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">K</text></g>
+  <text x="1148" y="377" font-size="11" font-weight="700" fill="#1c3a52">KAKAO OAUTH2</text>
+  <text x="1148" y="393" font-size="9" fill="#55677a">Auth Provider (소셜 로그인)</text>
+
+  <rect x="1100" y="594" width="316" height="54" rx="8" fill="#eafbf1" stroke="#3F8624" stroke-width="1.4"/>
+  <g transform="translate(1112,605)">
+    <rect width="30" height="30" rx="7" fill="#3F8624"/>
+    <ellipse cx="15" cy="9" rx="7.5" ry="2.6" fill="none" stroke="#ffffff" stroke-width="1.6"/>
+    <path d="M7.5,9 L7.5,21 A7.5,2.6 0 0 0 22.5,21 L22.5,9" fill="none" stroke="#ffffff" stroke-width="1.6"/>
+  </g>
+  <text x="1152" y="616" font-size="11" font-weight="700" fill="#1c3a52">POSTGRESQL</text>
+  <text x="1152" y="632" font-size="9" fill="#55677a">Primary RDBMS (JPA/Hibernate)</text>
+</g>
+
+<!-- ===================== BOTTOM ===================== -->
+<rect x="16" y="756" width="1418" height="34" rx="6" fill="#ffffff" stroke="#1c3a52" stroke-width="1.3"/>
+<text x="725" y="778" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11.5" fill="#1c3a52"><tspan font-weight="700">KEY ARCHITECTURAL PRINCIPLES: </tspan>Stateless JWT Auth · DTO/Entity 분리 · Cache-Aside Pattern (Guide) · Rate Limiting (Bucket4j)</text>
+</svg>

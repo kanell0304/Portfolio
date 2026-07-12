@@ -63,7 +63,8 @@ export const projects = [
     screenshots: [
       { src: "screenshots/steach-1.jpg", caption: "홈 화면 - 모의 면접/대화 분석/발표 분석/미니게임" },
       { src: "screenshots/steach-2.jpg", caption: "발표 분석 결과 - 음량/피치/속도/침묵/명료도 세부 점수" }
-    ]
+    ],
+    architecture: { src: "architecture/steach.svg", alt: "STEACH — Python + FastAPI Backend Architecture" }
   },
   {
     id: 2,
@@ -113,7 +114,8 @@ export const projects = [
     screenshots: [
       { src: "screenshots/formz-1.jpg", caption: "설문 생성 화면 - 질문 유형/필수 여부 설정" },
       { src: "screenshots/formz-2.jpg", caption: "설문 응답 화면" }
-    ]
+    ],
+    architecture: { src: "architecture/formz.svg", alt: "Formz — Python + FastAPI Backend Architecture" }
   },
   {
     id: 4,
@@ -191,7 +193,8 @@ export const projects = [
       { src: "screenshots/bank-assistant-1.jpg", caption: "온보딩 - 음성 안내 사용 여부 선택" },
       { src: "screenshots/bank-assistant-2.jpg", caption: "업무 선택 홈 화면" },
       { src: "screenshots/bank-assistant-3.jpg", caption: "AI 채팅 - 은행 앱 선택 및 단계별 안내" }
-    ]
+    ],
+    architecture: { src: "architecture/bankassistent.svg", alt: "BankAssistent — Java + Spring Boot Backend Architecture" }
   },
   {
     id: 3,
@@ -263,6 +266,7 @@ export const projects = [
     screenshots: [
       { src: "screenshots/shop-1.jpg", caption: "메인 화면 - 브랜드 히어로 배너" },
       { src: "screenshots/shop-2.jpg", caption: "상품 상세 화면" }
-    ]
+    ],
+    architecture: { src: "architecture/nord.svg", alt: "NORD — Java + Spring Boot Backend Architecture" }
   }
 ];

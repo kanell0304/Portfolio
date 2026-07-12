@@ -6,7 +6,7 @@ export const profile = {
   github: "https://github.com/kanell0304",
   tagline: "새로운 기술로 문제를 해결하고, 그 과정에서 시스템과 함께 성장하는 개발자",
   intro: [
-    "풀스택 개발 및 AI/ML 경험을 보유한 백엔드 엔지니어입니다. Python(FastAPI), Java(Spring Boot), React 기반 서비스 개발과 CI/CD, AWS 인프라 구축 경험이 있습니다.",
+    "백엔드를 중심에 두고, 서비스 전체 흐름을 이해하기 위해 프론트엔드까지 직접 구현해본 백엔드 엔지니어입니다. Java(Spring Boot)와 Python(FastAPI)으로 API와 인프라를 설계하는 데 주력하며, React 기반 프론트엔드 개발과 CI/CD, AWS 인프라 구축 경험도 함께 쌓았습니다.",
     "새로운 기술을 학습해 문제를 해결하고, 그 과정에서 시스템과 함께 성장하는 것에 성취감을 느낍니다. 낯선 기술 앞에서도 주저하기보다 직접 부딪혀 익히는 편이며, 팀 안에서는 문제를 먼저 짚고 대화로 풀어가는 방식으로 협업합니다."
   ],
   principles: [
